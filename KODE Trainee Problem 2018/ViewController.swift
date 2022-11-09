@@ -8,10 +8,17 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let networkManager = NetworkManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        networkManager.fetchCurrent()
+        networkManager.onCompletion = { [weak self] api in
+            guard let self = self else { return }
+            print(api.items.count)
+        }
     }
 
 
